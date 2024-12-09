@@ -1,0 +1,61 @@
+CONSULTA 1
+SELECT Nome, Cidade, Telefone FROM Clientes;
+
+
+CONSULTA 2
+SELECT Nome, Preço FROM Produtos WHERE Preço > 500.00;
+
+
+CONSULTA 3
+SELECT c.Nome AS Nome_Cliente, p.Nome AS Nome_Produto, pe.Quantidade
+FROM Pedidos pe
+JOIN Clientes c ON pe.ID_Cliente = c.ID_Cliente
+JOIN Produtos p ON pe.ID_Produto = p.ID_Produto
+WHERE pe.Data = '2024-12-02';
+
+
+CONSULTA 4
+SELECT SUM(Quantidade) AS Total_Produtos_Vendidos FROM Pedidos;  
+
+
+CONSULTA 5
+SELECT DISTINCT c.Nome
+FROM Pedidos pe
+JOIN Clientes c ON pe.ID_Cliente = c.ID_Cliente
+WHERE pe.Quantidade > 1;
+
+
+CONSULTA 6
+SELECT c.Nome, c.Cidade
+FROM Pedidos pe
+JOIN Clientes c ON pe.ID_Cliente = c.ID_Cliente
+JOIN Produtos p ON pe.ID_Produto = p.ID_Produto
+WHERE p.Nome = 'Monitor';
+
+
+CONSULTA 7
+SELECT c.Nome AS Nome_Cliente, p.Nome AS Nome_Produto, (p.Preço * pe.Quantidade) AS Valor_Total
+FROM Pedidos pe
+JOIN Clientes c ON pe.ID_Cliente = c.ID_Cliente
+JOIN Produtos p ON pe.ID_Produto = p.ID_Produto;
+
+
+CONSULTA 8
+SELECT c.Nome AS Nome_Cliente, p.Nome AS Nome_Produto, pe.Quantidade
+FROM Pedidos pe
+JOIN Clientes c ON pe.ID_Cliente = c.ID_Cliente
+JOIN Produtos p ON pe.ID_Produto = p.ID_Produto
+WHERE c.Cidade = 'Curitiba';
+
+
+CONSULTA 9
+	SELECT Nome, Preço
+FROM Produtos
+ORDER BY Preço DESC
+LIMIT 1;
+
+CONSULTA 10
+SELECT c.Nome AS Nome_Cliente, SUM(pe.Quantidade) AS Total_Produtos_Comprados
+FROM Pedidos pe
+JOIN Clientes c ON pe.ID_Cliente = c.ID_Cliente
+GROUP BY c.ID_Cliente;
